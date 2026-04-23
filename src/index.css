@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* DEFINICIÓN DE TU TEMA (Sustituye al tailwind.config.js) */
+@theme {
+  --color-primary-50: #eef2ff;
+  --color-primary-100: #e0e7ff;
+  --color-primary-500: #3b4fd8;
+  --color-primary-600: #1a3a8f;
+  --color-primary-700: #122e72;
+  --color-primary-900: #0b1c45;
+  --color-corporativo: #308446;
+  
+  --font-sans: "Inter", "system-ui", "sans-serif";
+}
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-gray-200 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-all duration-150 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    /* Ahora 'primary-600' ya existe gracias al bloque @theme de arriba */
+    @apply bg-corporativo text-white border-primary-600 hover:bg-primary-700;
+  }
+  /* ... tus otras clases (.btn-danger, .card, etc.) ... */
+}
