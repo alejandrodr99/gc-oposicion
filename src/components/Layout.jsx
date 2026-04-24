@@ -61,7 +61,7 @@ export default function Layout({ children }) {
 
           <div className="flex items-center shrink-0 mr-2 md:mr-6">
             <img
-              src="../public/images/pesadillapol1.png"
+              src="../images/pesadillapol1.png"
               alt="PesadillaPOL"
               className="h-14 md:h-20 w-auto object-contain"
             />
