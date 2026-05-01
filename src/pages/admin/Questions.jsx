@@ -149,7 +149,10 @@ function QuestionRow({ question, index, onEdit, onDelete }) {
               ))}
               {question.explanation && (
                 <div className="mt-2 text-xs text-yellow-700 bg-yellow-50 rounded-lg px-3 py-2 border-l-2 border-yellow-300">
-                  💡 {question.explanation}
+                  💡 <span
+                    className="rich-content"
+                    dangerouslySetInnerHTML={{ __html: question.explanation }}
+                  />
                 </div>
               )}
             </div>
