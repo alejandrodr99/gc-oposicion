@@ -4,6 +4,7 @@ import { doc, getDoc, updateDoc, increment } from 'firebase/firestore'
 import { db } from '../../firebase'
 import { useCollection, useFirestore } from '../../hooks/useFirestore'
 import Modal from '../../components/Modal'
+import RichEditor from '../../components/RichEditor'
 
 const LETTERS = ['A', 'B', 'C', 'D']
 
@@ -98,12 +99,10 @@ function QuestionModal({ topicId, blockId, question, onClose }) {
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Explicación <span className="text-gray-400 font-normal">(opcional)</span>
           </label>
-          <textarea
-            className="input"
+          <RichEditor
             value={explanation}
-            onChange={e => setExpl(e.target.value)}
+            onChange={setExpl}
             placeholder="Explica por qué es correcta esta respuesta..."
-            rows={3}
           />
         </div>
 

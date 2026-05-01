@@ -116,7 +116,13 @@ function QuestionCard({ question, index, total, onAnswer }) {
       </div>
       {revealed && question.explanation && (
         <div className="card mb-4 border-l-4 border-yellow-300 bg-yellow-50 rounded-xl">
-          <p className="text-sm text-yellow-800"><span className="font-semibold">💡 Explicación: </span>{question.explanation}</p>
+          <p className="text-sm text-yellow-800">
+            <span className="font-semibold">💡 Explicación: </span>
+            <span
+              className="rich-content"
+              dangerouslySetInnerHTML={{ __html: question.explanation }}
+            />
+          </p>
         </div>
       )}
       <div className="flex justify-end gap-3">
@@ -168,7 +174,12 @@ function ResultsScreen({ answers, topicName, blockName, onRetry, onHome }) {
                 </div>
               ))}
               {a.question.explanation && (
-                <div className="mt-2 text-xs text-yellow-700 bg-yellow-50 rounded px-2 py-1.5">💡 {a.question.explanation}</div>
+                <div className="mt-2 text-xs text-yellow-700 bg-yellow-50 rounded px-2 py-1.5">
+                  💡 <span
+                    className="rich-content"
+                    dangerouslySetInnerHTML={{ __html: a.question.explanation }}
+                  />
+                </div>
               )}
             </div>
           ))}
