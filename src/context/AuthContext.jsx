@@ -6,9 +6,10 @@ import { auth, db } from '../firebase'
 const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
-  const [user, setUser]       = useState(null)   // objeto Firebase User
-  const [profile, setProfile] = useState(null)   // documento de Firestore { role, email, ... }
-  const [loading, setLoading] = useState(true)
+    const [user, setUser]          = useState(null)   // objeto Firebase User
+    const [profile, setProfile]    = useState(null)   // documento de Firestore { role, email, ... }
+    const [loading, setLoading]    = useState(true)
+    const [profileLoaded, setProfileLoaded] = useState(false)
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, async (firebaseUser) => {
@@ -29,9 +30,11 @@ export function AuthProvider({ children }) {
           await setDoc(ref, newProfile)
           setProfile(newProfile)
         }
+        setProfileLoaded(true)
       } else {
         setUser(null)
         setProfile(null)
+        setProfileLoaded(false)
       }
       setLoading(false)
     })
@@ -62,7 +65,7 @@ export function AuthProvider({ children }) {
   const isAdmin = profile?.role === 'admin'
   const isUser  = profile?.role === 'user'
 
-  const value = { user, profile, loading, isAdmin, isUser, login, register, logout }
+  const value = { user, profile, profileLoaded, loading, isAdmin, isUser, login, register, logout }
 
   return (
     <AuthContext.Provider value={value}>

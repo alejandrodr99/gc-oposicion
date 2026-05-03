@@ -16,8 +16,9 @@ import Exam           from './pages/app/Exam'
 import Stats          from './pages/app/Stats'
 
 function RootRedirect() {
-  const { user, isAdmin } = useAuth()
+  const { user, profileLoaded, isAdmin } = useAuth()
   if (!user) return <Navigate to="/login" replace />
+  if (!profileLoaded) return <div className="min-h-screen flex items-center justify-center text-gray-400">Cargando...</div>
   return <Navigate to={isAdmin ? '/admin' : '/app'} replace />
 }
 
